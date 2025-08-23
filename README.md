@@ -12,5 +12,5 @@ Open the GUI application. Select the locations of the source and target files. F
 
 # Support
 
-Windows (MSYS2: Mingw-w64) and linux supported.\
+Windows (MSYS2: Mingw-w64/Qt6) and linux(Qt6) supported.\
 Please aware of warning 2.
