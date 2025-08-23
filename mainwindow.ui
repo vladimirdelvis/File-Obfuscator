@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>862</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>862</width>
+    <height>760</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>File-Obfuscator</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3" stretch="4,0,0">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,1">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#f20004;&quot;&gt;Source file doesn't exists.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_2" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,3,1">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Source File Location</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="src_loc">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="src_selector">
+             <property name="text">
+              <string>Browse</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,3,1">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Destination File Location</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="dst_loc"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="dst_selector">
+             <property name="text">
+              <string>Browse</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_3" native="true">
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>18</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="kontrol">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>36</pointsize>
+               <italic>true</italic>
+               <kerning>true</kerning>
+               <fontweight>Medium</fontweight>
+              </font>
+             </property>
+             <property name="text">
+              <string>Ready</string>
+             </property>
+             <property name="tristate">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>200</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,1">
+          <property name="spacing">
+           <number>12</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="starter">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stopper">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Secret 1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="seed1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maxLength">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Secret 2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="seed2">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maxLength">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Sub-process count</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="sub_prc_count">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QRadioButton" name="obf_mode_button">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Obfuscate</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="dobf_mode_button">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>De-Obfuscate</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="slicer1_lbl">
+          <property name="text">
+           <string>Source Address Ranges</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="slicer1">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+          </property>
+          <property name="rowCount">
+           <number>8</number>
+          </property>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>0</number>
+          </attribute>
+          <attribute name="horizontalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>0</number>
+          </attribute>
+          <attribute name="verticalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column>
+           <property name="text">
+            <string>Min Address</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Max Address</string>
+           </property>
+          </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="1" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="2" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="3" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="4" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="4" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="5" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="5" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="6" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="6" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="7" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="7" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="slicer2_lbl">
+          <property name="text">
+           <string>Destination Address Ranges</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="slicer2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+          </property>
+          <property name="rowCount">
+           <number>8</number>
+          </property>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>0</number>
+          </attribute>
+          <attribute name="horizontalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderMinimumSectionSize">
+           <number>0</number>
+          </attribute>
+          <attribute name="verticalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column>
+           <property name="text">
+            <string>Min Address</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Max Address</string>
+           </property>
+          </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="1" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="2" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="3" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="4" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="4" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="5" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="5" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="6" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="6" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="7" column="0">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+          <item row="7" column="1">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPlainTextEdit" name="logger">
+      <property name="cursor" stdset="0">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_4"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>src_loc</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>src_or_dst_changed(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>278</x>
+     <y>60</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>416</x>
+     <y>344</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dst_loc</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>src_or_dst_changed(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>278</x>
+     <y>160</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>416</x>
+     <y>344</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>src_or_dst_changed(QString)</slot>
+ </slots>
+</ui>
