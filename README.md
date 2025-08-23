@@ -4,7 +4,7 @@ A program that splits the source file (up to 8 parts) and writes the bytes conta
 
 # How To Use
 
-Open the GUI application. Select the locations of the source and target files. Fill in the Secret 1 and 2 values as desired, select the mode. Set the desired number (max 8) of subprocesses. Adjust the ranges of the parts in the tables.
+Open the GUI application. Select the locations of the source and target files. Fill in the Secret 1 and 2 values as desired, set the desired number (max 8) of subprocesses and select the mode. Adjust the ranges of the parts in the tables.
 
 > WARNING 1: Direct use of the CLI application may cause errors.
 
