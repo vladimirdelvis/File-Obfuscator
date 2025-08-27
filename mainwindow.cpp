@@ -70,13 +70,12 @@ void MainWindow::on_dst_selector_clicked()
 
 void MainWindow::src_or_dst_changed(const QString &text){
     if(QFile::exists(ui->src_loc->text()) && !ui->dst_loc->text().isEmpty()){
-        reset(true);
-        ui->label_6->setText(nullptr);
-        ui->sub_prc_count->setValue(1);
-        on_sub_prc_count_valueChanged(1);
+        ui->seed1->setEnabled(true);
+        ui->seed2->setEnabled(true);
+        secret_checker();
     }
     else if(ui->dst_loc->text().isEmpty() && QFile::exists(ui->src_loc->text())){
-        ui->label_6->setText("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">Destination file input cannot be empty.</span></p></body></html>");
+        ui->label_6->setText("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">Destination file location input cannot be empty.</span></p></body></html>");
         ui->kontrol->setCheckState(Qt::Unchecked);
         reset(false);
         reset_tables();
@@ -89,8 +88,61 @@ void MainWindow::src_or_dst_changed(const QString &text){
     }
 }
 
+void MainWindow::secret_checker(){
+
+    // *** CHECK SEED1 AND SEED2 *** //
+
+    if(ui->seed1->text() == "" || ui->seed2->text() == ""){
+        ui->label_6->setText("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">Secret 1 and Secret 2 musn't be blank.</span></p></body></html>");
+        ui->sub_prc_count->setEnabled(false);
+        ui->slicer1->setEnabled(false);
+        ui->slicer2->setEnabled(false);
+        ui->starter->setEnabled(false);
+        ui->stopper->setEnabled(false);
+        ui->obf_mode_button->setEnabled(false);
+        ui->dobf_mode_button->setEnabled(false);
+        reset_tables();
+    }
+    else{
+
+        // CHECKING SEED1 AND SEED2 ARE NUMERIC
+
+        bool ok;
+        ui->seed1->text().toULongLong(&ok);
+        ui->seed2->text().toULongLong(ok ? &ok : nullptr);
+        if(!ok){
+            ui->label_6->setText("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">Secret 1 and Secret 2 must be numerical.</span></p></body></html>");
+            ui->sub_prc_count->setEnabled(false);
+            ui->slicer1->setEnabled(false);
+            ui->slicer2->setEnabled(false);
+            ui->starter->setEnabled(false);
+            ui->stopper->setEnabled(false);
+            ui->obf_mode_button->setEnabled(false);
+            ui->dobf_mode_button->setEnabled(false);
+            reset_tables();
+            return;
+        }
+
+        ui->label_6->setText(nullptr);
+        ui->sub_prc_count->setEnabled(true);
+        ui->slicer1->setEnabled(true);
+        ui->slicer2->setEnabled(true);
+        ui->starter->setEnabled(true);
+        ui->stopper->setEnabled(false);
+        ui->obf_mode_button->setEnabled(true);
+        ui->dobf_mode_button->setEnabled(true);
+        ui->sub_prc_count->setValue(1);
+        on_sub_prc_count_valueChanged(1);
+    }
+
+    // ***                       *** //
+}
+
 void MainWindow::on_sub_prc_count_valueChanged(int arg1)
 {
+
+    // INITIALIZE TABLE
+
     reset_tables();
     ui->slicer1->item(0,0)->setText("0");
     ui->slicer2->item(0,0)->setText("0");
@@ -146,32 +198,29 @@ void MainWindow::update_table(int row, int column, QTableWidget* table){
     if(inreset | (column == 0))
         return;
     auto current_value = table->item(row,column)->text().toULongLong();
-    // *** CHECK TABLES *** //
-    ui->kontrol->setChecked(true);
-    ui->label_6->setText(nullptr);
-    if(1){
-        for (size_t var = 0; var < counter; ++var) {
-            if(ui->slicer1->item(var,1)->text().isEmpty() || ui->slicer1->item(var,0)->text().toULongLong() > ui->slicer1->item(var,1)->text().toULongLong()){
-                ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table1(%1,%2) cannot be greater than table1(%1,%3)</span></p></body></html>").arg(var + 1)
-                                                                                                                                                                                                .arg(1).arg(2));
-                ui->kontrol->setChecked(false);
-                break;
-            }
-            if(ui->slicer2->item(var,0)->text().toULongLong() > ui->slicer2->item(var,1)->text().toULongLong()){
-                ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table2(%1,%2) cannot be greater than table2(%1,%3)</span></p></body></html>").arg(var + 1)
-                                         .arg(1).arg(2));
-                ui->kontrol->setChecked(false);
-                break;
-            }
-            if(ui->slicer1->item(var,1)->text().toULongLong() - ui->slicer1->item(var,0)->text().toULongLong() > ui->slicer2->item(var,1)->text().toULongLong() - ui->slicer2->item(var,0)->text().toULongLong()){
-                ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table1(%1,%2) - table(%1,%3) cannot be greater than table2(%1,%2) - table(%1,%3)</span></p></body></html>").arg(var + 1).arg(2).arg(1));
-                ui->kontrol->setChecked(false);
-                break;
-            }
-        }
-    }
-    else if(ui->dobf_mode_button->isChecked()){
 
+    // *** CHECK TABLES *** //
+
+    ui->kontrol->setChecked(true);
+    //ui->label_6->setText(nullptr);
+    for (size_t var = 0; var < counter; ++var) {
+        if(ui->slicer1->item(var,1)->text().isEmpty() || ui->slicer1->item(var,0)->text().toULongLong() > ui->slicer1->item(var,1)->text().toULongLong()){
+            ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table1(%1,%2) cannot be greater than table1(%1,%3)</span></p></body></html>").arg(var + 1)
+                                     .arg(1).arg(2));
+            ui->kontrol->setChecked(false);
+            break;
+        }
+        if(ui->slicer2->item(var,0)->text().toULongLong() > ui->slicer2->item(var,1)->text().toULongLong()){
+            ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table2(%1,%2) cannot be greater than table2(%1,%3)</span></p></body></html>").arg(var + 1)
+                                     .arg(1).arg(2));
+            ui->kontrol->setChecked(false);
+            break;
+        }
+        if(ui->slicer1->item(var,1)->text().toULongLong() - ui->slicer1->item(var,0)->text().toULongLong() > ui->slicer2->item(var,1)->text().toULongLong() - ui->slicer2->item(var,0)->text().toULongLong()){
+            ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table1(%1,%2) - table(%1,%3) cannot be greater than table2(%1,%2) - table(%1,%3)</span></p></body></html>").arg(var + 1).arg(2).arg(1));
+            ui->kontrol->setChecked(false);
+            break;
+        }
     }
 
     // ***              *** //
@@ -187,10 +236,12 @@ void MainWindow::update_table(int row, int column, QTableWidget* table){
 
 void MainWindow::reset(bool value){
     if(value){
-        ui->src_loc->setEnabled(value);
-        ui->dst_loc->setEnabled(value);
-        ui->src_selector->setEnabled(value);
-        ui->dst_selector->setEnabled(value);
+        ui->src_loc->setEnabled(true);
+        ui->dst_loc->setEnabled(true);
+        ui->src_selector->setEnabled(true);
+        ui->dst_selector->setEnabled(true);
+        ui->stopper->setEnabled(false);
+        counter = ui->sub_prc_count->value(); // PROBLEMATIC
     }
     ui->seed1->setEnabled(value);
     ui->seed2->setEnabled(value);
@@ -198,14 +249,8 @@ void MainWindow::reset(bool value){
     ui->slicer1->setEnabled(value);
     ui->slicer2->setEnabled(value);
     ui->starter->setEnabled(value);
-    ui->stopper->setEnabled(!value);
     ui->obf_mode_button->setEnabled(value);
     ui->dobf_mode_button->setEnabled(value);
-    /*if(value){
-        counter = 0;
-        ui->sub_prc_count->setValue(1);
-        on_sub_prc_count_valueChanged(1);
-    }*/
 }
 
 void MainWindow::on_obf_mode_button_toggled(bool checked)
@@ -238,34 +283,34 @@ void MainWindow::on_slicer2_cellChanged(int row, int column)
 
 void MainWindow::on_starter_clicked()
 {
+    // PASSING ARGUMENTS TO SUBPROCESSES
+
     if(ui->kontrol->isChecked()){
         ui->src_loc->setEnabled(false);
         ui->dst_loc->setEnabled(false);
         ui->src_selector->setEnabled(false);
         ui->dst_selector->setEnabled(false);
+        reset(false);
+        ui->stopper->setEnabled(true);
         ui->logger->clear();
         QStringList arguments{9};
         if(ui->obf_mode_button->isChecked()){
-            reset(false);
             auto obf_loc = QFileDialog::getOpenFileName(this,"Choose obfuscator location");
-            //counter = ui->sub_prc_count->value();
             for (size_t var = 0; var < counter; ++var) {
-                arguments.assign({ui->seed1->text(),ui->seed2->text(),
-                                  ui->slicer1->item(var,0)->text(),ui->slicer1->item(var,1)->text(),
-                                  ui->slicer2->item(var,0)->text(),ui->slicer2->item(var,1)->text(),
-                                  ui->src_loc->text(),ui->dst_loc->text(),QString("%1").arg(var+1)});
+                arguments.assign({ui->seed1->text().trimmed(),ui->seed2->text().trimmed(),
+                                  ui->slicer1->item(var,0)->text().trimmed(),ui->slicer1->item(var,1)->text().trimmed(),
+                                  ui->slicer2->item(var,0)->text().trimmed(),ui->slicer2->item(var,1)->text().trimmed(),
+                                  ui->src_loc->text().trimmed(),ui->dst_loc->text().trimmed(),QString("%1").arg(var+1)});
                 QtConcurrent::run(thr1,obf_loc,arguments,this);
             }
         }
         else if(ui->dobf_mode_button->isChecked()){
-            reset(false);
             auto dobf_loc = QFileDialog::getOpenFileName(this,"Choose de-obfuscator location");
-            //counter = ui->sub_prc_count->value();
             for (size_t var = 0; var < counter; ++var) {
-                arguments.assign({ui->seed1->text(),ui->seed2->text(),
-                                  ui->slicer2->item(var,0)->text(),ui->slicer2->item(var,1)->text(),
-                                  ui->slicer1->item(var,0)->text(),ui->slicer1->item(var,1)->text(),
-                                  ui->src_loc->text(),ui->dst_loc->text(),QString("%1").arg(var+1)});
+                arguments.assign({ui->seed1->text().trimmed(),ui->seed2->text().trimmed(),
+                                  ui->slicer2->item(var,0)->text().trimmed(),ui->slicer2->item(var,1)->text().trimmed(),
+                                  ui->slicer1->item(var,0)->text().trimmed(),ui->slicer1->item(var,1)->text().trimmed(),
+                                  ui->src_loc->text().trimmed(),ui->dst_loc->text().trimmed(),QString("%1").arg(var+1)});
                 QtConcurrent::run(thr1,dobf_loc,arguments,this);
             }
         }

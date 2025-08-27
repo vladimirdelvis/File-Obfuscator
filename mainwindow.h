@@ -47,6 +47,8 @@ private slots:
 
     void on_stopper_clicked();
 
+    void secret_checker();
+
 private:
     void reset(bool value);
     void reset_tables();

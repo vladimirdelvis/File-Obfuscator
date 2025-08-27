@@ -253,30 +253,6 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Sub-process count</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="sub_prc_count">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>8</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
            <widget class="QRadioButton" name="obf_mode_button">
@@ -301,6 +277,30 @@
             </property>
             <property name="checked">
              <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Sub-process count</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="sub_prc_count">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>8</number>
             </property>
            </widget>
           </item>
@@ -719,8 +719,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>seed1</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>secret_checker()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>739</x>
+     <y>24</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>seed2</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>secret_checker()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>739</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>379</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>src_or_dst_changed(QString)</slot>
+  <slot>secret_checker()</slot>
  </slots>
 </ui>
