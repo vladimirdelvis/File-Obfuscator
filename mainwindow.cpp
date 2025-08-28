@@ -62,7 +62,10 @@ void MainWindow::concat_files(){
 
 void MainWindow::on_src_selector_clicked()
 {
-    file_src = QFileDialog::getOpenFileName(this,"Source File Chooser");
+    file_src = QFileDialog::getOpenFileName(this,"Source File Chooser");    
+#if _WIN32
+    file_src.replace('/','\\');
+#endif
     ui->src_loc->setText(file_src);
 }
 
@@ -70,6 +73,9 @@ void MainWindow::on_src_selector_clicked()
 void MainWindow::on_dst_selector_clicked()
 {
     file_dst = QFileDialog::getSaveFileName(this,"Destination File Chooser");
+#if _WIN32
+    file_dst.replace('/','\\');
+#endif
     ui->dst_loc->setText(file_dst);
 }
 
