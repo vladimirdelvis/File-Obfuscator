@@ -21,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
         bool success = true;
         ui->logger->appendPlainText(QString("%2. Program exited with code %1").arg(ret_value).arg(ui->sub_prc_count->value() - counter + 1));
         counter--;
-        if (ret_value != 0)
+        if (ret_value != && success == true)
             success = false;
-        if(success){
+        if(success && counter == 0){
             concat_files();
             if(ui->obf_mode_button->isChecked())
                 QMessageBox::information(this,"Success","Obfuscation completed succesfully.\nPlease take a note tables and secret keys for de-obfuscation.");
