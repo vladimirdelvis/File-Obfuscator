@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
                 QMessageBox::information(this,"Success","De-obfuscation completed succesfully.");
             reset(true);
         }
-        else{
+        else if(counter == 0){
             QMessageBox::critical(this,"Fatal","Fatal error");
             reset(true);
         }
