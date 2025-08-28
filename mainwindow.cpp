@@ -202,7 +202,7 @@ void MainWindow::update_table(int row, int column, QTableWidget* table){
     // *** CHECK TABLES *** //
 
     ui->kontrol->setChecked(true);
-    //ui->label_6->setText(nullptr);
+    ui->label_6->setText(nullptr);
     for (size_t var = 0; var < counter; ++var) {
         if(ui->slicer1->item(var,1)->text().isEmpty() || ui->slicer1->item(var,0)->text().toULongLong() > ui->slicer1->item(var,1)->text().toULongLong()){
             ui->label_6->setText(QString("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">table1(%1,%2) cannot be greater than table1(%1,%3)</span></p></body></html>").arg(var + 1)
