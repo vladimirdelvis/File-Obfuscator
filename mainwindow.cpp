@@ -124,7 +124,7 @@ void MainWindow::secret_checker(){
         ui->seed1->text().toULongLong(&ok);
         ui->seed2->text().toULongLong(ok ? &ok : nullptr);
         if(!ok){
-            ui->label_6->setText("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">Secret 1 and Secret 2 must be numerical.</span></p></body></html>");
+            ui->label_6->setText("<html><head/><body><p><span style=\" font-size:12pt; color:#f20004;\">Secret 1 and Secret 2 must be numerical and natural number.</span></p></body></html>");
             ui->sub_prc_count->setEnabled(false);
             ui->slicer1->setEnabled(false);
             ui->slicer2->setEnabled(false);
