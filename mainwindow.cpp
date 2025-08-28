@@ -19,8 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
     inreset = false;
     connect(this,&MainWindow::i_finished_my_job,this,[&](qint32 ret_value) {
         ui->logger->appendPlainText(QString("%2. Program exited with code %1").arg(ret_value).arg(ui->sub_prc_count->value() - counter + 1));
+        counter--;
         if(ret_value == 0){
-            if(--counter == 0){
+            if(counter == 0){
                 concat_files();
                 if(ui->obf_mode_button->isChecked())
                     QMessageBox::information(this,"Success","Obfuscation completed succesfully.\nPlease take a note tables and secret keys for de-obfuscation.");
@@ -28,6 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
                     QMessageBox::information(this,"Success","De-obfuscation completed succesfully.");
                 reset(true);
             }
+            else if(counter < 0){
+                QMessageBox::critical(this,"Fatal","Fatal error");
+            }
+        }
+        else if(ret_value == -1){
+            counter--;
         }
     });
 }
@@ -101,6 +108,7 @@ void MainWindow::secret_checker(){
         ui->stopper->setEnabled(false);
         ui->obf_mode_button->setEnabled(false);
         ui->dobf_mode_button->setEnabled(false);
+        ui->kontrol->setChecked(false);
         reset_tables();
     }
     else{
@@ -119,6 +127,7 @@ void MainWindow::secret_checker(){
             ui->stopper->setEnabled(false);
             ui->obf_mode_button->setEnabled(false);
             ui->dobf_mode_button->setEnabled(false);
+            ui->kontrol->setChecked(false);
             reset_tables();
             return;
         }
@@ -295,7 +304,8 @@ void MainWindow::on_starter_clicked()
         ui->logger->clear();
         QStringList arguments{9};
         if(ui->obf_mode_button->isChecked()){
-            auto obf_loc = QFileDialog::getOpenFileName(this,"Choose obfuscator location");
+            //auto obf_loc = QFileDialog::getOpenFileName(this,"Choose obfuscator location");
+            auto obf_loc = "./obfuscator";
             for (size_t var = 0; var < counter; ++var) {
                 arguments.assign({ui->seed1->text().trimmed(),ui->seed2->text().trimmed(),
                                   ui->slicer1->item(var,0)->text().trimmed(),ui->slicer1->item(var,1)->text().trimmed(),
@@ -305,7 +315,8 @@ void MainWindow::on_starter_clicked()
             }
         }
         else if(ui->dobf_mode_button->isChecked()){
-            auto dobf_loc = QFileDialog::getOpenFileName(this,"Choose de-obfuscator location");
+            //auto dobf_loc = QFileDialog::getOpenFileName(this,"Choose de-obfuscator location");
+            auto dobf_loc = "./de-obfuscator";
             for (size_t var = 0; var < counter; ++var) {
                 arguments.assign({ui->seed1->text().trimmed(),ui->seed2->text().trimmed(),
                                   ui->slicer2->item(var,0)->text().trimmed(),ui->slicer2->item(var,1)->text().trimmed(),
@@ -315,11 +326,30 @@ void MainWindow::on_starter_clicked()
             }
         }
     }
+    else{
+        QMessageBox::warning(this,"Warning","Please fix all errors mentioned above.");
+    }
 }
 
 
 void MainWindow::on_stopper_clicked()
 {
-// ----- //
+#ifdef __linux__
+    if(ui->obf_mode_button->isChecked()){
+        system("pkill obfuscator");
+    }
+    else if(ui->dobf_mode_button->isChecked()) {
+        system("pkill de-obfuscator");
+    }
+#elif _WIN32
+    if(ui->obf_mode_button->isChecked()){
+        system("taskkill /f /im obfuscator.exe");
+    }
+    else if(ui->dobf_mode_button->isChecked()) {
+        system("taskkill /f /im de-obfuscator.exe");
+    }
+#endif
+
+    reset(true);
 }
 
