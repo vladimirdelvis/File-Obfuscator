@@ -18,23 +18,21 @@ MainWindow::MainWindow(QWidget *parent)
     counter = 0;
     inreset = false;
     connect(this,&MainWindow::i_finished_my_job,this,[&](qint32 ret_value) {
+        bool success = true;
         ui->logger->appendPlainText(QString("%2. Program exited with code %1").arg(ret_value).arg(ui->sub_prc_count->value() - counter + 1));
         counter--;
-        if(ret_value == 0){
-            if(counter == 0){
-                concat_files();
-                if(ui->obf_mode_button->isChecked())
-                    QMessageBox::information(this,"Success","Obfuscation completed succesfully.\nPlease take a note tables and secret keys for de-obfuscation.");
-                else if(ui->dobf_mode_button->isChecked())
-                    QMessageBox::information(this,"Success","De-obfuscation completed succesfully.");
-                reset(true);
-            }
-            else if(counter < 0){
-                QMessageBox::critical(this,"Fatal","Fatal error");
-            }
+        if (ret_value != 0)
+            success = false;
+        if(success){
+            concat_files();
+            if(ui->obf_mode_button->isChecked())
+                QMessageBox::information(this,"Success","Obfuscation completed succesfully.\nPlease take a note tables and secret keys for de-obfuscation.");
+            else if(ui->dobf_mode_button->isChecked())
+                QMessageBox::information(this,"Success","De-obfuscation completed succesfully.");
+            reset(true);
         }
-        else {
-            counter--;
+        else{
+            QMessageBox::critical(this,"Fatal","Fatal error");
         }
     });
 }
