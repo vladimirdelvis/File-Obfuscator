@@ -56,6 +56,7 @@ private:
     void concat_files();
 
     bool inreset;
+    bool success;
     qint32 counter;
     Ui::MainWindow *ui;
     QString file_src,file_dst;
