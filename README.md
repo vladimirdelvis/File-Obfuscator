@@ -13,4 +13,4 @@ Open the GUI application. Select the locations of the source and target files. F
 # Support
 
 Windows (MSYS2: Mingw-w64/Qt6) and Linux(Qt6) supported.\
-Please aware of warning 2.
+On Windows file names must be ascii form. 
