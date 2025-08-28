@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
                 QMessageBox::critical(this,"Fatal","Fatal error");
             }
         }
-        else if(ret_value == -1){
+        else {
             counter--;
         }
     });
